@@ -1,0 +1,41 @@
+Name: Harshali Bedmutha
+
+#include<stdio.h>
+#include<string.h>
+
+
+ int Vowelcount(char str[max])
+ {
+   int cnt=0;
+   int i=0;
+
+   for(i=0;str[i]!='\0';i++)
+    {
+      if(str[i]=='a'||str[i]=='e'||str[i]=='i'||str[i]=='o'||str[i]=='u'||str[i]=='A'||str[i]=='E'||str[i]=='I'||str[i]=='O'||str[i]=='U')
+       
+         cnt++;
+       
+    }
+
+   return cnt;
+   
+ }
+
+ int main()
+ {
+ 
+ int count;
+ char str[max];
+
+ printf("Enter a string\n");
+ scanf(%s,str);
+
+ printf("Reversed string is: %s ", str.reverse());
+
+ count=Vowelcount(str);
+ printf("The number of vowels are: %d", count)
+ 
+ return 0;
+ 
+
+}

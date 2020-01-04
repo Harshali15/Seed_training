@@ -100,11 +100,25 @@ public class Main {
 
 					
 
-					query = "Select* from patients";
-					
-					 Statement stmt= conn.createStatement();
+					query = "Select * from patients where patient_id = ?";
+					pstmt1 = conn.prepareStatement(query);
 
-					 ResultSet rs=stmt.executeQuery(query);
+					System.out.println("Enter patient id to view");
+
+					int id = in.nextInt();
+
+					pstmt1.setInt(1, id);
+					
+					ResultSet rs=pstmt1.executeQuery();
+					
+					
+					query = "Select * from prescriptions where patient_id = ?";
+					pstmt1 = conn.prepareStatement(query);
+
+					pstmt1.setInt(1, id);
+					
+					ResultSet rs1=pstmt1.executeQuery();
+					
 
 					conn.commit();
 					while (rs.next()) {
@@ -114,6 +128,12 @@ public class Main {
 
 					}
 
+					System.out.println("PRESCRIPTION:\n");
+					while (rs1.next()) {
+						System.out.println("\nPres id: " + rs1.getInt("pres_id") + "\nDate : "
+						+ rs1.getDate("pres_date") + "\n Medicine name" + rs1.getString("medicine_name"));
+
+					}
 					break;
 				case 3:// DELETE patient and related prescrption
 
@@ -121,7 +141,7 @@ public class Main {
 					String query2 = "delete from prescriptions where patient_id=?";
 					pstmt1 = conn.prepareStatement(query2);
 
-					int id;
+					//int id;
 
 					System.out.println("Enter patient id to delete");
 
